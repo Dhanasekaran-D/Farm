@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SALE INVOICE</title>
+</meta>
+<style>
+body {
+	width: 100vw;
+	font-family: Verdana, sans-serif;
+}
+
+table {
+	/* border: 1px solid #060606;
+border-collapse: collapse; */
+	width: 100%;
+	margin-top: 8px;
+}
+
+.tr {
+	height: 50px;
+	font-size: 13px;
+	text-align: center;
+	color: #28282B;
+}
+/* th,td{
+border: 1px solid #060606;
+border-collapse: collapse;
+} */
+h1 {
+	
+	font-size: 15px;
+	color: #037caf;
+}
+
+h3 {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 2px;
+	color: black;
+}
+
+h6 {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: #495057;
+}
+
+.p {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.data {
+	height: 35px;
+	text-align: center;
+
+}
+
+p {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: #495057;
+}
+
+.blFntSize {
+	margin-top: 7px;
+	margin-left: 120px;
+}
+
+.blFntSize1 {
+	margin-top: 7px;
+	margin-left: 150px;
+}
+
+.right-align {
+	text-align: right;
+	margin-left: 70%;
+	font-size: 12px;
+	font-weight: 100;
+}
+header img {
+	width: 70px; /* Adjust the width and height according to your needs */
+	height: auto;
+}
+
+span {
+	color: #495057;
+	font-size: 12px;
+}
+hr{
+color:#bbbbbb;
+margin-top:8px;
+}
+</style>
+</head>
+<body>
+<div>
+			<h1 style="margin-left: 70%;color:#037caf;margin-top: -45px;"> 	<strong> INVOICE</strong></h1> 
+		 </div>
+	<hr/>
+	<main></main>
+	<p class="p" th:text="${poultryobj.poultryName}"></p>
+	<p th:text="${poultryobj.address}"></p>
+	<h6>
+		<span th:text="${poultryobj.districtName}"></span>, 
+		<span th:text="${poultryobj.stateName}"></span>, 
+		<span	th:text="${poultryobj.countryName}"></span>
+	</h6>
+	<p th:text="${poultryobj.phoneNo}"></p>
+	<div style="margin-left: 70%; margin-top: -65px">
+		<h3 style=" font-size:12px;color:black">CUSTOMER</h3>
+		<p class="c" th:text="${customer.name}"></p>
+		<p th:text="${customer.address}"></p>
+		<h6>
+			<span th:text="${customer.districtName}"></span>, <span
+				th:text="${customer.stateName}"></span>, <span
+				th:text="${customer.countryName}"></span>
+		</h6>
+		<p th:text="${customer.phoneNo}"></p>
+	</div>
+	<br></br>
+	<main>
+		<h3>
+			<span class="right-align"> INVOCE NO &nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;<span
+				style="font-size: 10px; color: #495057"
+				th:text="${salesnoobj.salesNo}"></span>
+				
+			</span>
+			<br /><br />
+			 <span class="right-align"> SALE DATE
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;</strong> :&nbsp; <span
+				style="font-size: 10px; color: #495057"
+				th:text="${salesnoobj.salesDate}"></span>
+			</span> 
+			<br /><br />
+			<span class="right-align" > DELIVERY DATE :&nbsp; <span
+				style="font-size: 10px; color: #495057"
+				th:text="${salesnoobj.deliveryDate}"></span>
+			</span>
+		</h3>
+	</main>
+	<br></br>
+	<table>
+
+		<thead>
+			<tr>
+				<th colspan="6" style="border-bottom: 1px solid #bbbbbb"></th>
+			</tr>
+			<tr class="tr">
+				<th>S.NO</th>
+				<th>PRODUCT NAME</th>
+				<th>QUANTITY</th>
+				<th>RATE</th>
+				<th>AMOUNT</th>
+			</tr>
+			<tr>
+				<th colspan="6" style="border-bottom: 1px solid #bbbbbb"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="data" th:each="SalesResponse, serialNumber: ${salesList}">
+			<td class="blFntSize " th:text="${serialNumber.index + 1}"
+					style="color: #495057; font-size: 12px;"></td>
+				<td class="blFntSize " th:text="${SalesResponse.productName}"
+					style="color: #495057; font-size: 12px;"></td>
+				<td class="blFntSize" th:text="${SalesResponse.quantity}"
+					style="color: #495057; font-size: 12px;"></td>
+				<td class="blFntSize" th:text="${SalesResponse.rate}"
+					style="color: #495057; font-size: 12px; text-align: right; padding-right: 70px;"></td>
+				<td class="blFntSize" th:text="${SalesResponse.amount}"
+					style="color: #495057; font-size: 12px; text-align: right; padding-right: 70px"></td>
+			</tr>
+			<tr>
+				<th colspan="6" style="border-bottom: 1px solid #bbbbbb"></th>
+			</tr>
+		</tbody>
+	</table>
+	<br></br>
+	<div style="margin-left: 66%">
+		<div style=" display: flex;font-size: 12px;font-weight:100; line-height: 32px;color:black"> <span> 
+			SUB TOTAL &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;</strong>:</span> &nbsp;<span
+				style="margin-right: 20%;font-size: 12px; color: #495057;"
+				th:text="${salesnoobj.subTotal}"></span>
+		</div>
+		<div style=" display: flex; font-size: 12px;font-weight:100;line-height: 32px;color:black"><span>
+			DISCOUNT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp;</strong>: </span>&nbsp; <span>(-)</span> <span
+				style="margin-right: 20%;font-size: 12px; color: #495057;"
+				th:text="${salesnoobj.discount}"></span>
+		</div>
+		<div style=" display: flex; font-size: 12px;font-weight:100; line-height: 32px;color:black"><span>
+			TOTAL PAYABLE : </span>&nbsp; <span style="margin-right: 20%;font-size: 12px; color: #495057;"
+				th:text="${salesnoobj.totalPayable}"></span>
+		</div>
+	</div>
+</body>
+</html>

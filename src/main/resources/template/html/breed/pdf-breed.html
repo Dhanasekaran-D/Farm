@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>POULTRY BREED</title>
+</meta>
+<style>
+body {
+	width: 100vw;
+	font-family: Verdana, sans-serif;
+}
+
+table {
+	border: 1px solid #060606;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 8px;
+}
+
+.tr {
+	height: 50px;
+	text-align: left;
+	padding: 10px;
+}
+
+.th {
+	width: 60%;
+}
+
+th, td {
+	border: 1px solid #bbbbbb;
+	border-collapse: collapse;
+}
+
+h1 {
+	font-size: 15px;
+	color: #037caf;
+}
+
+h3 {
+	font-size: 14px;
+	margin-bottom: 2px;
+	font-weight: 100;
+}
+
+h6 {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: #495057;
+}
+
+.p {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+.data {
+	height: 35px;
+}
+
+p {
+	font-size: 12px;
+	font-weight: 100;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: #495057;
+}
+
+.blFntSize {
+	margin-top: 7px;
+	margin-left: 10px;
+}
+
+.name {
+	margin-left: 10px;
+	font-size: 13px;
+	font-weight: 100;
+	color: black;
+}
+
+header img {
+	width: 70px; /* Adjust the width and height according to your needs */
+	height: auto;
+}
+hr{
+color:#bbbbbb;
+margin-top:8px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<h1 style="margin-left: 70%; color: #037caf; margin-top: -45px;">
+			<strong> POULTRY BREED</strong>
+		</h1>
+	</div>
+	<hr/>
+	<main></main>
+	<p style="font-size:12px;font-weight:400;color:black;" class="p" th:text="${poultyrobj.poultryName}"></p>
+	<p th:text="${poultyrobj.address}"></p>
+	<h6>
+		<span th:text="${poultyrobj.districtName}"></span>, <span
+			th:text="${poultyrobj.stateName}"></span>, <span
+			th:text="${poultyrobj.countryName}"></span>
+	</h6>
+	<p th:text="${poultyrobj.phoneNo}" style="margin-bottom:10px;"></p>
+	<table>
+		<thead>
+			<tr class="tr" style="color: #28282B;">
+				<th><p class="name">S.NO</p></th>
+				<th class="th"><p class="name">Breed</p></th>
+				<th class="total"><p class="name">Total Count</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="data" th:each="breedDTO , serialNumber : ${breedList}">
+				<td>
+					<p class="blFntSize" th:text="${serialNumber.index + 1}"></p>
+				</td>
+				<td>
+					<p class="blFntSize" th:text="${breedDTO.breedName}"></p>
+				</td>
+				<td>
+					<p class="blFntSize" th:text="${breedDTO.totalCount}"></p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
